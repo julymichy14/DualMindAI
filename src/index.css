@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    --background: 220 30% 5%;
+    --foreground: 213 31% 91%;
+
+    --card: 220 30% 8%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 220 30% 8%;
+    --popover-foreground: 213 31% 91%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 270 70% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 217 20% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 20% 15%;
+    --accent-foreground: 213 31% 91%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 30% 15%;
+    --input: 217 30% 15%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* BA theme */
+    --ba-primary: 217 91% 60%;
+    --ba-light: 213 93% 78%;
+    --ba-glow: 217 91% 60% / 0.25;
+    --ba-bg: 220 60% 8%;
+    --ba-surface: 220 50% 13%;
+    --ba-card: 220 45% 16%;
+    --ba-border: 217 91% 60% / 0.2;
+
+    /* Dev theme */
+    --dev-primary: 270 70% 60%;
+    --dev-light: 270 90% 82%;
+    --dev-glow: 270 70% 60% / 0.25;
+    --dev-bg: 270 50% 5%;
+    --dev-surface: 270 40% 10%;
+    --dev-card: 270 40% 14%;
+    --dev-border: 270 70% 60% / 0.2;
+
+    --text: 213 31% 95%;
+    --text-muted: 215 20% 65%;
+    --text-faint: 217 20% 35%;
+
+    --success: 160 72% 40%;
+    --warning: 38 92% 50%;
+    --danger: 0 84% 60%;
+
+    --sidebar-background: 220 30% 5%;
+    --sidebar-foreground: 213 31% 91%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 20% 15%;
+    --sidebar-accent-foreground: 213 31% 91%;
+    --sidebar-border: 217 30% 15%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.2s ease;
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+.animate-blink {
+  animation: blink 0.8s infinite;
+}
+
+/* Scrollbar */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: hsl(var(--text-faint)); border-radius: 2px; }
+
+/* Markdown in chat */
+.chat-markdown h1, .chat-markdown h2, .chat-markdown h3 {
+  font-size: 13px; font-weight: 700;
+  margin: 12px 0 6px;
+  color: hsl(var(--text));
+}
+.chat-markdown h1:first-child, .chat-markdown h2:first-child, .chat-markdown h3:first-child { margin-top: 0; }
+.chat-markdown p { margin-bottom: 8px; }
+.chat-markdown p:last-child { margin-bottom: 0; }
+.chat-markdown ul, .chat-markdown ol { padding-left: 18px; margin: 6px 0; }
+.chat-markdown li { margin-bottom: 4px; }
+.chat-markdown code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: hsl(var(--foreground) / 0.08);
+}
+.chat-markdown pre {
+  background: hsl(var(--background) / 0.5);
+  border-radius: 8px;
+  padding: 10px;
+  overflow-x: auto;
+  margin: 8px 0;
+  border: 1px solid hsl(var(--foreground) / 0.06);
+}
+.chat-markdown pre code {
+  background: none; padding: 0; font-size: 11.5px;
+  color: hsl(213 31% 88%);
+}
+.chat-markdown table {
+  width: 100%; border-collapse: collapse;
+  font-size: 12px; margin: 8px 0;
+}
+.chat-markdown th, .chat-markdown td {
+  padding: 6px 8px;
+  border: 1px solid hsl(var(--foreground) / 0.08);
+  text-align: left;
+}
+.chat-markdown th { background: hsl(var(--foreground) / 0.05); font-weight: 600; }
+.chat-markdown strong { font-weight: 600; }
+.chat-markdown blockquote {
+  border-left: 3px solid hsl(var(--foreground) / 0.2);
+  padding-left: 10px;
+  margin: 8px 0;
+  color: hsl(var(--text-muted));
+}
+.chat-markdown hr {
+  border: none;
+  border-top: 1px solid hsl(var(--foreground) / 0.08);
+  margin: 10px 0;
+}
